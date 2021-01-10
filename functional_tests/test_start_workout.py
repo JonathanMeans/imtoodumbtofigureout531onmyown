@@ -10,7 +10,7 @@ class SimpleWorkoutTest(StaticLiveServerTestCase):
     def tearDown(self) -> None:
         self.browser.quit()
 
-    def test_can_start_workout_and_see_plan(self):
+    def test_can_start_workout_and_see_plan(self) -> None:
         # Shantae goes to her training website to try out the 531 for beginners workout
         self.browser.get(self.live_server_url)
 
