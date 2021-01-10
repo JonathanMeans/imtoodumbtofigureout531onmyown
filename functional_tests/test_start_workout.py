@@ -1,6 +1,7 @@
+import time
+
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 
 
 class SimpleWorkoutTest(StaticLiveServerTestCase):
@@ -19,4 +20,11 @@ class SimpleWorkoutTest(StaticLiveServerTestCase):
 
         # She enters her impressive starting point
         inputbox.send_keys("425")
-        inputbox.send_keys(Keys.ENTER)
+        self.browser.find_element_by_id("id_submit_tmax").click()
+
+        # She sees her first set of deadlifts
+        time.sleep(2)
+        deadlift_table = self.browser.find_element_by_id("id_deadlift_week_one")
+        rows = deadlift_table.find_elements_by_tag_name("td")
+        rows = [row.text for row in rows]
+        self.assertEqual(rows[0], "40%")
