@@ -48,6 +48,5 @@ def get_set(percentage: float, training_max: float) -> Workout:
 
 
 def get_workout(training_max: float) -> List[Workout]:
-
     percentages = [40, 50, 60, 65, 75, 85, 65, 65, 65, 65, 65]
     return [get_set(percentage, training_max) for percentage in percentages]
