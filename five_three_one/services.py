@@ -26,15 +26,19 @@ def format_breakdown(weights: Dict[float, int]) -> str:
 
 def calculate_breakdown(total: float) -> str:
     current: float = 0
-    needed: Dict[float, int] = defaultdict(int)
+    weights_needed_per_side: Dict[float, int] = defaultdict(int)
     while current < total:
-        remaining = total - current
-        for weight in WEIGHTS:
-            if weight <= remaining:
-                current += weight
-                needed[weight] += 1
-                break
-    return format_breakdown(needed)
+        current += add_largest_valid_weight(weights_needed_per_side, current, total)
+    return format_breakdown(weights_needed_per_side)
+
+
+def add_largest_valid_weight(
+    weights_per_side: Dict[float, int], current: float, total: float
+) -> float:
+    remaining = total - current
+    weight_to_add = next((weight for weight in WEIGHTS if weight <= remaining), 0)
+    weights_per_side[weight_to_add] += 1
+    return weight_to_add
 
 
 def round_to(value: float, increment: float) -> float:
