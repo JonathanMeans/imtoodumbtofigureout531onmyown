@@ -22,4 +22,5 @@ import five_three_one.views
 urlpatterns = [
     path("admin/", admin.site.urls),
     url(r"^$", five_three_one.views.home_view),
+    url(r"^workout$", five_three_one.views.workout_view),
 ]
