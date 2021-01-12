@@ -1,4 +1,4 @@
-from django.http import HttpResponse, response, HttpRequest
+from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render
 
 from five_three_one.services import get_workout

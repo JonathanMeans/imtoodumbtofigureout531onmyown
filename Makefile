@@ -6,6 +6,7 @@ format:
 
 typecheck:
 	mypy --strict .
+	flake8
 
 test:
 	python manage.py test

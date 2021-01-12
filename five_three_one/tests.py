@@ -1,6 +1,3 @@
-import sys
-from unittest import skip
-
 from django.test import TestCase
 
 from five_three_one.services import get_workout

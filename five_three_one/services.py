@@ -55,7 +55,10 @@ def get_set(percentage: float, training_max: float) -> Workout:
     weight_per_side = (total_weight - BAR_WEIGHT) / 2
     breakdown = calculate_breakdown(weight_per_side)
     return Workout(
-        percent=f"{percentage}%", reps=5, weight=total_weight, breakdown=breakdown
+        percent=f"{percentage}%",
+        reps=5,
+        weight=total_weight,
+        breakdown=breakdown,
     )
 
 
