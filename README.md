@@ -1,1 +1,1 @@
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/JonathanMeans/imtoodumbtofigureout531onmyown/workflows/build/badge.svg)
+![GitHub Workflow Status](https://github.com/JonathanMeans/imtoodumbtofigureout531onmyown/workflows/build/badge.svg)
