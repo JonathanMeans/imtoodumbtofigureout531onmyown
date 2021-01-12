@@ -1,6 +1,9 @@
 from collections import defaultdict
 from dataclasses import dataclass
+from functools import reduce
 from typing import Dict, List
+
+WEIGHTS: List[float] = [45, 25, 10, 5, 2.5, 1.25]
 
 
 @dataclass
@@ -13,14 +16,13 @@ class Workout:
 
 def format_breakdown(weights: Dict[float, int]) -> str:
     keys = reversed(sorted(weights.keys()))
-    result = ""
-    for key in keys:
-        result += f"{key}x{weights[key]}, "
+    result = reduce(
+        lambda accumulator, key: accumulator + f"{key}x{weights[key]}, ", keys, ""
+    )
     return result[:-2]
 
 
 def calculate_breakdown(total: float) -> str:
-    WEIGHTS: List[float] = [45, 25, 10, 5, 2.5, 1.25]
     current: float = 0
     needed: Dict[float, int] = defaultdict(int)
     while current < total:
