@@ -15,12 +15,14 @@
         </tr>
     </thead>
     <tbody>
+        {% for set in workout %}
         <tr>
-            <td>{{workout.percent}}</td>
-            <td>{{workout.reps}}</td>
-            <td>{{workout.weight}}</td>
-            <td>{{workout.breakdown}}</td>
+            <td>{{set.percent}}</td>
+            <td>{{set.reps}}</td>
+            <td>{{set.weight}}</td>
+            <td>{{set.breakdown}}</td>
         </tr>
+        {% endfor %}
     </tbody>
 </table>
 </body>

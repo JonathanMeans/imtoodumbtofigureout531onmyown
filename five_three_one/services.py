@@ -20,7 +20,7 @@ def format_breakdown(weights: Dict[float, int]) -> str:
 
 
 def calculate_breakdown(total: float) -> str:
-    WEIGHTS: List[float] = [45, 25, 10, 5, 2.5, 1.5]
+    WEIGHTS: List[float] = [45, 25, 10, 5, 2.5, 1.25]
     current: float = 0
     needed: Dict[float, int] = defaultdict(int)
     while current < total:
@@ -33,9 +33,21 @@ def calculate_breakdown(total: float) -> str:
     return format_breakdown(needed)
 
 
-def get_workout(training_max: float) -> Workout:
-    total_weight = 0.4 * training_max
+def round_to(value: float, increment: float) -> float:
+    return round(increment * round(value / increment), 2)
+
+
+def get_set(percentage: float, training_max: float) -> Workout:
+    total_weight = round_to(percentage * training_max / 100, 2.5)
     bar_weight = 45
     weight_per_side = (total_weight - bar_weight) / 2
     breakdown = calculate_breakdown(weight_per_side)
-    return Workout(percent="40%", reps=5, weight=total_weight, breakdown=breakdown)
+    return Workout(
+        percent=f"{percentage}%", reps=5, weight=total_weight, breakdown=breakdown
+    )
+
+
+def get_workout(training_max: float) -> List[Workout]:
+
+    percentages = [40, 50, 60, 65, 75, 85, 65, 65, 65, 65, 65]
+    return [get_set(percentage, training_max) for percentage in percentages]

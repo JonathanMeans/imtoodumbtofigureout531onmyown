@@ -6,30 +6,10 @@
 </head>
 <body>
 <h1>Enter your training max</h1>
-<form>
-    <input id="id_deadlift_tmax_input" placeholder="deadlift">
+<form method="post" action="/workout">
+    {% csrf_token %}
+    <input id="id_tmax_input" name="tmax" placeholder="training max">
     <input type="submit" id="id_submit_tmax">
 </form>
-<!--
-<table id="id_deadlift_week_one">
-    <thead>
-        <tr>
-            <th>%</th>
-            <th>Count</th>
-            <th>Weight</th>
-            <th>Breakdown</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>40%</td>
-            <td>5</td>
-            <td>170</td>
-            <td>45x1, 10x1, 5x1, 2.5x1</td>
-        </tr>
-    </tbody>
-
-</table>
--->
 </body>
 </html>

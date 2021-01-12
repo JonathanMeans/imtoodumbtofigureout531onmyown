@@ -16,7 +16,7 @@ class SimpleWorkoutTest(StaticLiveServerTestCase):
         self.browser.get(self.live_server_url)
 
         # She is asked to enter her training max for deadlift
-        inputbox = self.browser.find_element_by_id("id_deadlift_tmax_input")
+        inputbox = self.browser.find_element_by_id("id_tmax_input")
 
         # She enters her training max
         inputbox.send_keys("425")
@@ -32,5 +32,5 @@ class SimpleWorkoutTest(StaticLiveServerTestCase):
         # And it has all the sets for the workout
         self.assertEqual(rows[40], "65%")
         self.assertEqual(rows[41], "5")
-        self.assertEqual(rows[42], "275")
+        self.assertEqual(rows[42], "275.0")
         # TODO: One more
