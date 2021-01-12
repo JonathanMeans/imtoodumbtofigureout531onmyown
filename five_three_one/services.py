@@ -4,6 +4,8 @@ from functools import reduce
 from typing import Dict, List
 
 WEIGHTS: List[float] = [45, 25, 10, 5, 2.5, 1.25]
+BAR_WEIGHT = 45
+SET_PERCENTAGES = [40, 50, 60, 65, 75, 85, 65, 65, 65, 65, 65]
 
 
 @dataclass
@@ -41,8 +43,7 @@ def round_to(value: float, increment: float) -> float:
 
 def get_set(percentage: float, training_max: float) -> Workout:
     total_weight = round_to(percentage * training_max / 100, 2.5)
-    bar_weight = 45
-    weight_per_side = (total_weight - bar_weight) / 2
+    weight_per_side = (total_weight - BAR_WEIGHT) / 2
     breakdown = calculate_breakdown(weight_per_side)
     return Workout(
         percent=f"{percentage}%", reps=5, weight=total_weight, breakdown=breakdown
@@ -50,5 +51,4 @@ def get_set(percentage: float, training_max: float) -> Workout:
 
 
 def get_workout(training_max: float) -> List[Workout]:
-    percentages = [40, 50, 60, 65, 75, 85, 65, 65, 65, 65, 65]
-    return [get_set(percentage, training_max) for percentage in percentages]
+    return [get_set(percentage, training_max) for percentage in SET_PERCENTAGES]
