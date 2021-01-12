@@ -18,13 +18,19 @@ class SimpleWorkoutTest(StaticLiveServerTestCase):
         # She is asked to enter her training max for deadlift
         inputbox = self.browser.find_element_by_id("id_deadlift_tmax_input")
 
-        # She enters her impressive starting point
+        # She enters her training max
         inputbox.send_keys("425")
         self.browser.find_element_by_id("id_submit_tmax").click()
 
         # She sees her first set of deadlifts
         time.sleep(2)
-        deadlift_table = self.browser.find_element_by_id("id_deadlift_week_one")
+        deadlift_table = self.browser.find_element_by_id("id_workout_table")
         rows = deadlift_table.find_elements_by_tag_name("td")
         rows = [row.text for row in rows]
         self.assertEqual(rows[0], "40%")
+
+        # And it has all the sets for the workout
+        self.assertEqual(rows[40], "65%")
+        self.assertEqual(rows[41], "5")
+        self.assertEqual(rows[42], "275")
+        # TODO: One more

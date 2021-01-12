@@ -33,7 +33,7 @@ def calculate_breakdown(total: float) -> str:
     return format_breakdown(needed)
 
 
-def get_workout(training_max: int) -> Workout:
+def get_workout(training_max: float) -> Workout:
     total_weight = 0.4 * training_max
     bar_weight = 45
     weight_per_side = (total_weight - bar_weight) / 2

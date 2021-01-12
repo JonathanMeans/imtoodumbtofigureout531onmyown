@@ -13,12 +13,11 @@ class TestHomeView(TestCase):
 
 class TestWorkoutView(TestCase):
     def test_uses_workout_template(self) -> None:
-        response = self.client.post("/workout")
+        response = self.client.post("/workout", data={"tmax": "170"})
         self.assertTemplateUsed(response, "workout.html")
 
-    @skip("service not implemented")
     def test_shows_deadlift_workout(self) -> None:
-        response = self.client.post("/workout", data={"deadlift": "170"})
+        response = self.client.post("/workout", data={"tmax": "425"})
         self.assertContains(response, "40%")
         self.assertContains(response, "5")
         self.assertContains(response, "170")
