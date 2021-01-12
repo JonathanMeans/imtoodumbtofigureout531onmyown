@@ -1,7 +1,7 @@
-from collections import defaultdict
+from collections import Counter
 from dataclasses import dataclass
 from functools import reduce
-from typing import Dict, List
+from typing import List
 
 WEIGHTS: List[float] = [45, 25, 10, 5, 2.5, 1.25]
 BAR_WEIGHT = 45
@@ -16,29 +16,28 @@ class Workout:
     breakdown: str
 
 
-def format_breakdown(weights: Dict[float, int]) -> str:
-    keys = reversed(sorted(weights.keys()))
+def format_breakdown(weights: List[float]) -> str:
+    weight_counts = Counter(weights)
     result = reduce(
-        lambda accumulator, key: accumulator + f"{key}x{weights[key]}, ", keys, ""
+        lambda accumulator, key: accumulator + f"{key}x{weight_counts[key]}, ",
+        weights,
+        "",
     )
     return result[:-2]
 
 
 def calculate_breakdown(total: float) -> str:
-    current: float = 0
-    weights_needed_per_side: Dict[float, int] = defaultdict(int)
+    weights_needed_per_side: List[float] = []
+    current = 0.0
     while current < total:
-        current += add_largest_valid_weight(weights_needed_per_side, current, total)
+        weights_needed_per_side.append(largest_valid_weight(current, total))
+        current = sum(weights_needed_per_side)
     return format_breakdown(weights_needed_per_side)
 
 
-def add_largest_valid_weight(
-    weights_per_side: Dict[float, int], current: float, total: float
-) -> float:
+def largest_valid_weight(current: float, total: float) -> float:
     remaining = total - current
-    weight_to_add = next((weight for weight in WEIGHTS if weight <= remaining), 0)
-    weights_per_side[weight_to_add] += 1
-    return weight_to_add
+    return next((weight for weight in WEIGHTS if weight <= remaining), 0)
 
 
 def round_to(value: float, increment: float) -> float:
