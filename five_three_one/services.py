@@ -1,7 +1,7 @@
 from collections import Counter
 from dataclasses import dataclass
 from functools import reduce
-from typing import List
+from typing import List, Any, Callable
 
 WEIGHTS: List[float] = [45, 25, 10, 5, 2.5, 1.25]
 BAR_WEIGHT = 45
@@ -26,12 +26,20 @@ def format_breakdown(weights: List[float]) -> str:
     return result[:-2]
 
 
+def append_until(
+    final_value: float, adder: Callable[[float, float], float]
+) -> List[float]:
+    current_value = 0.0
+    result: List[float] = []
+    while current_value < final_value:
+        value_to_add = adder(current_value, final_value)
+        result.append(value_to_add)
+        current_value += value_to_add
+    return result
+
+
 def calculate_breakdown(total: float) -> str:
-    weights_needed_per_side: List[float] = []
-    current = 0.0
-    while current < total:
-        weights_needed_per_side.append(largest_valid_weight(current, total))
-        current = sum(weights_needed_per_side)
+    weights_needed_per_side = append_until(total, largest_valid_weight)
     return format_breakdown(weights_needed_per_side)
 
 
