@@ -1,7 +1,7 @@
 from collections import Counter
 from dataclasses import dataclass
 from functools import reduce
-from typing import List, Any, Callable, Generator
+from typing import List, Callable, Generator
 
 WEIGHTS: List[float] = [45, 25, 10, 5, 2.5, 1.25]
 BAR_WEIGHT = 45
