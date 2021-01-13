@@ -27,7 +27,7 @@ SECRET_KEY = "z1+^=_ndd4u3(@_3jg(c(_&_a@_sqedwytz6ve8ljy385w$wpg"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS: List[str] = []
+ALLOWED_HOSTS: List[str] = ["*"]
 
 
 # Application definition
