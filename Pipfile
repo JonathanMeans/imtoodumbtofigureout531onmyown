@@ -7,6 +7,7 @@ black="==20.8b1"
 mypy="*"
 django-stubs="*"
 pytest="*"
+coverage="*"
 
 [requires]
 python_version = "3.8"

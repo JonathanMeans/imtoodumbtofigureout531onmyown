@@ -9,7 +9,7 @@ typecheck:
 	flake8
 
 test:
-	python manage.py test
+	coverage run --source five_three_one manage.py test
 
 
 utest:
