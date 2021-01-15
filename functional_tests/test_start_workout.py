@@ -10,7 +10,7 @@ class SimpleWorkoutTest(FiveThreeOneFunctionalTest):
         self.browser.get(self.live_server_url)
 
         # She is asked to enter her training max for deadlift
-        inputbox = self.browser.find_element_by_id("id_tmax_input")
+        inputbox = self.browser.find_element_by_id("id_training_max")
 
         # She enters her training max
         inputbox.send_keys("425")

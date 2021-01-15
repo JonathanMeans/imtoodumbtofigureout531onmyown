@@ -7,8 +7,8 @@
 <body>
 <h1>Enter your training max</h1>
 <form method="post" action="/workout">
+    {{ form }}
     {% csrf_token %}
-    <input id="id_tmax_input" name="tmax" placeholder="training max">
     <input type="submit" id="id_submit_tmax">
 </form>
 </body>
