@@ -1,5 +1,4 @@
-import time
-
+from selenium.webdriver.support.wait import WebDriverWait
 
 from functional_tests.base import FiveThreeOneFunctionalTest, HomePage
 
@@ -14,9 +13,10 @@ class SimpleWorkoutTest(FiveThreeOneFunctionalTest):
         page.submit_training_max("425")
 
         # She sees her first set of deadlifts
-        time.sleep(2)
-
-        deadlift_table = self.browser.find_element_by_id("id_workout_table")
+        deadlift_table = WebDriverWait(self.browser, 10).until(
+            lambda browser: browser.find_element_by_id("id_workout_table")
+        )
+        # self.browser.find_element_by_id("id_workout_table")
         rows = deadlift_table.find_elements_by_tag_name("td")
         rows = [row.text for row in rows]
         self.assertEqual(rows[0], "40%")
