@@ -11,5 +11,27 @@
     {% csrf_token %}
     <input type="submit" id="id_submit_tmax">
 </form>
+{% if workout %}
+<table id="id_workout_table">
+    <thead>
+        <tr>
+            <th>%</th>
+            <th>Count</th>
+            <th>Weight</th>
+            <th>Breakdown</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for set in workout %}
+        <tr>
+            <td>{{set.percent}}</td>
+            <td>{{set.reps}}</td>
+            <td>{{set.weight}}</td>
+            <td>{{set.breakdown}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
 </body>
 </html>

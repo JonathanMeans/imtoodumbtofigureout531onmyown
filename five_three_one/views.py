@@ -12,4 +12,4 @@ def home_view(request: HttpRequest) -> HttpResponse:
 def workout_view(request: HttpRequest) -> HttpResponse:
     training_max = float(request.POST["training_max"])
     workout = get_workout(training_max)
-    return render(request, "workout.html", {"workout": workout})
+    return render(request, "home.html", {"workout": workout})

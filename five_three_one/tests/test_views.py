@@ -14,9 +14,9 @@ class TestHomeView(TestCase):
 
 
 class TestWorkoutView(TestCase):
-    def test_uses_workout_template(self) -> None:
+    def test_uses_home_template(self) -> None:
         response = self.client.post("/workout", data={"training_max": "170"})
-        self.assertTemplateUsed(response, "workout.html")
+        self.assertTemplateUsed(response, "home.html")
 
     def test_shows_deadlift_workout(self) -> None:
         response = self.client.post("/workout", data={"training_max": "425"})
