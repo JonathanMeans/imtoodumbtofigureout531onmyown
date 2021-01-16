@@ -15,7 +15,7 @@ def _get_latest_source():
 
 
 def _update_pipenv():
-    run("pipenv update")
+    run("pipenv sync")
 
 
 def _update_static_files():
