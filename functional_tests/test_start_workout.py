@@ -36,3 +36,7 @@ class SimpleWorkoutTest(FiveThreeOneFunctionalTest):
         # But not the second set
         second_row = rows[1]
         self.assertNotIn("current-set", second_row.get_attribute("class").split())
+
+        # She clicks the "complete set" button and the highlighted set advances
+        self.browser.find_element_by_id("id_next_set").click()
+        self.assertIn("current-set", second_row.get_attribute("class").split())

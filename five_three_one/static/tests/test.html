@@ -8,7 +8,7 @@
     </head>
     <body>
 	  <div id="qunit"></div>
-	    <div id="qunit-fixture"></div>
+	    <div id="qunit-fixture">
 	 <table id="id_workout_table">
     <thead>
         <tr>
@@ -99,6 +99,8 @@
 
     </tbody>
 </table>
+      <button id="id_next_set">Next set</button>
+        </div>
 	      <script src="qunit-2.14.0.js"></script>
           <script src="../jquery-3.5.1.min.js"></script>
           <script src="../five_three_one.js"></script>
@@ -109,6 +111,13 @@ QUnit.test("initialize table to have first row highlighted", function (assert) {
       assert.false($("#id_workout_table tbody tr:first").hasClass("current-set"));
       five_three_one_initialize()
       assert.true($("#id_workout_table tbody tr:first").hasClass("current-set"));
+});
+QUnit.test("next-set button advances highlight", function (assert) {
+      five_three_one_initialize()
+      assert.true($("#id_workout_table tbody tr:first").hasClass("current-set"));
+      $("#id_next_set").click();
+      assert.false($("#id_workout_table tbody tr:first").hasClass("current-set"));
+      assert.true($("#id_workout_table tbody tr:nth-child(2)").hasClass("current-set"));
 });
 
   </script>
