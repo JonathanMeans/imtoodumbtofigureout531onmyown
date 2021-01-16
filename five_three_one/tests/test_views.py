@@ -16,6 +16,14 @@ class TestHomeView(TestCase):
         response = self.client.post("/", data={"training_max": "170"})
         self.assertIsInstance(response.context["form"], TrainingMaxForm)
 
+    def test_error_on_alpha_tmax(self) -> None:
+        response = self.client.post("/", data={"training_max": "abc"})
+        self.assertIn("numeric", response.context["errors"])
+
+    def test_error_on_too_small_tmax(self) -> None:
+        response = self.client.post("/", data={"training_max": "50"})
+        self.assertIn(">=", response.context["errors"])
+
     def test_POST_uses_home_template(self) -> None:
         response = self.client.post("/", data={"training_max": "170"})
         self.assertTemplateUsed(response, "home.html")
