@@ -29,6 +29,9 @@ if "DJANGO_DEBUG_FALSE" in os.environ:
     DEBUG = False
     SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
     ALLOWED_HOSTS.append(os.environ["SITENAME"])
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
 else:
     DEBUG = True
     SECRET_KEY = "z1+^=_ndd4u3(@_3jg(c(_&_a@_sqedwytz6ve8ljy385w$wpg"
