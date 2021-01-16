@@ -25,4 +25,14 @@ class SimpleWorkoutTest(FiveThreeOneFunctionalTest):
         self.assertEqual(rows[40], "65%")
         self.assertEqual(rows[41], "5")
         self.assertEqual(rows[42], "275.0")
-        # TODO: One more
+
+        # The first set is highlighted to show where she is in the workout
+        rows = deadlift_table.find_element_by_tag_name(
+            "tbody"
+        ).find_elements_by_tag_name("tr")
+        first_row = rows[0]
+        self.assertIn("current-set", first_row.get_attribute("class").split())
+
+        # But not the second set
+        second_row = rows[1]
+        self.assertNotIn("current-set", second_row.get_attribute("class").split())

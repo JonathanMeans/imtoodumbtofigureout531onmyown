@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	  <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width">
+	      <title>Javascript tests</title>
+	        <link rel="stylesheet" href="qunit-2.14.0.css">
+    </head>
+    <body>
+	  <div id="qunit"></div>
+	    <div id="qunit-fixture"></div>
+	 <table id="id_workout_table">
+    <thead>
+        <tr>
+            <th>%</th>
+            <th>Count</th>
+            <th>Weight</th>
+            <th>Breakdown</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>40%</td>
+            <td>5</td>
+            <td>50.0</td>
+            <td>2.5x1</td>
+        </tr>
+
+        <tr>
+            <td>50%</td>
+            <td>5</td>
+            <td>62.5</td>
+            <td>5x1, 2.5x1, 1.25x1</td>
+        </tr>
+
+        <tr>
+            <td>60%</td>
+            <td>5</td>
+            <td>75.0</td>
+            <td>10x1, 5x1</td>
+        </tr>
+
+        <tr>
+            <td>65%</td>
+            <td>5</td>
+            <td>80.0</td>
+            <td>10x1, 5x1, 2.5x1</td>
+        </tr>
+
+        <tr>
+            <td>75%</td>
+            <td>5</td>
+            <td>95.0</td>
+            <td>25x1</td>
+        </tr>
+
+        <tr>
+            <td>85%</td>
+            <td>5</td>
+            <td>105.0</td>
+            <td>25x1, 5x1</td>
+        </tr>
+
+        <tr>
+            <td>65%</td>
+            <td>5</td>
+            <td>80.0</td>
+            <td>10x1, 5x1, 2.5x1</td>
+        </tr>
+
+        <tr>
+            <td>65%</td>
+            <td>5</td>
+            <td>80.0</td>
+            <td>10x1, 5x1, 2.5x1</td>
+        </tr>
+
+        <tr>
+            <td>65%</td>
+            <td>5</td>
+            <td>80.0</td>
+            <td>10x1, 5x1, 2.5x1</td>
+        </tr>
+
+        <tr>
+            <td>65%</td>
+            <td>5</td>
+            <td>80.0</td>
+            <td>10x1, 5x1, 2.5x1</td>
+        </tr>
+
+        <tr>
+            <td>65%</td>
+            <td>5</td>
+            <td>80.0</td>
+            <td>10x1, 5x1, 2.5x1</td>
+        </tr>
+
+    </tbody>
+</table>
+	      <script src="qunit-2.14.0.js"></script>
+          <script src="../jquery-3.5.1.min.js"></script>
+          <script src="../five_three_one.js"></script>
+
+	        <script>
+
+QUnit.test("initialize table to have first row highlighted", function (assert) {
+      assert.false($("#id_workout_table tbody tr:first").hasClass("current-set"));
+      five_three_one_initialize()
+      assert.true($("#id_workout_table tbody tr:first").hasClass("current-set"));
+});
+
+  </script>
+    </body>
+</html>
