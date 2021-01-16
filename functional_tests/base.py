@@ -30,6 +30,7 @@ class HomePage:
         inputbox.send_keys(tmax_value)
 
         week_box = self.browser.find_element_by_id("id_week_number")
+        week_box.clear()
         week_box.send_keys(str(week_number))
 
         self.browser.find_element_by_id("id_submit_tmax").click()

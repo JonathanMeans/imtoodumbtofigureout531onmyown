@@ -10,7 +10,7 @@ class TestWorkoutService(TestCase):
         self.assertEqual(11, len(workout))
         first_set = workout[0]
         self.assertEqual(first_set.percent, "40%")
-        self.assertEqual(first_set.reps, 5)
+        self.assertEqual(first_set.reps, "5")
         self.assertEqual(first_set.weight, 170)
         self.assertEqual(first_set.breakdown, "45x1, 10x1, 5x1, 2.5x1")
 
@@ -20,12 +20,12 @@ class TestWorkoutService(TestCase):
         self.assertEqual(11, len(workout))
         first_set = workout[0]
         self.assertEqual(first_set.percent, "40%")
-        self.assertEqual(first_set.reps, 5)
+        self.assertEqual(first_set.reps, "5")
         self.assertEqual(first_set.weight, 170)
         self.assertEqual(first_set.breakdown, "45x1, 10x1, 5x1, 2.5x1")
 
         last_set = workout[10]
         self.assertEqual(last_set.percent, "70%")
-        self.assertEqual(last_set.reps, 5)
+        self.assertEqual(last_set.reps, "5")
         self.assertEqual(last_set.weight, 297.5)
         self.assertEqual(last_set.breakdown, "45x2, 25x1, 10x1, 1.25x1")

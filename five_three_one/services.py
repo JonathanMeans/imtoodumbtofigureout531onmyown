@@ -11,11 +11,19 @@ SET_PERCENTAGES = {
     3: [40, 50, 60, 75, 85, 95, 75, 75, 75, 75, 75],
 }
 
+_warmup_reps = ["5", "5", "3"]
+_first_set_last_reps = ["5"] * 5
+REPS = {
+    1: _warmup_reps + ["5", "5", "5+"] + _first_set_last_reps,
+    2: _warmup_reps + ["3", "3", "3+"] + _first_set_last_reps,
+    3: _warmup_reps + ["5", "3", "1+"] + _first_set_last_reps,
+}
+
 
 @dataclass
 class Workout:
     percent: str
-    reps: int
+    reps: str
     weight: float
     breakdown: str
 
@@ -49,13 +57,13 @@ def round_to(value: float, increment: float) -> float:
     return round(increment * round(value / increment), 2)
 
 
-def get_set(percentage: float, training_max: float) -> Workout:
+def get_set(percentage: float, reps: str, training_max: float) -> Workout:
     total_weight = round_to(percentage * training_max / 100, 2.5)
     weight_per_side = (total_weight - BAR_WEIGHT) / 2
     breakdown = calculate_breakdown(weight_per_side)
     return Workout(
         percent=f"{percentage}%",
-        reps=5,
+        reps=reps,
         weight=total_weight,
         breakdown=breakdown,
     )
@@ -63,5 +71,6 @@ def get_set(percentage: float, training_max: float) -> Workout:
 
 def get_workout(training_max: float, week_number: int) -> List[Workout]:
     return [
-        get_set(percentage, training_max) for percentage in SET_PERCENTAGES[week_number]
+        get_set(percentage, reps, training_max)
+        for (percentage, reps) in zip(SET_PERCENTAGES[week_number], REPS[week_number])
     ]
