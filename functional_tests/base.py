@@ -25,9 +25,13 @@ class HomePage:
     def get_training_max_input(self) -> WebElement:
         return self.browser.find_element_by_id("id_training_max")
 
-    def submit_training_max(self, tmax_value: str) -> None:
+    def submit_training_max(self, tmax_value: str, week_number: int) -> None:
         inputbox = self.get_training_max_input()
         inputbox.send_keys(tmax_value)
+
+        week_box = self.browser.find_element_by_id("id_week_number")
+        week_box.send_keys(str(week_number))
+
         self.browser.find_element_by_id("id_submit_tmax").click()
 
     def get_validation_message(self) -> str:

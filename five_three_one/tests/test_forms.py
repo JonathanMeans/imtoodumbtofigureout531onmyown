@@ -13,3 +13,12 @@ class TrainingMaxFormTest(TestCase):
         form = TrainingMaxForm(data={"training_max": "45"})
         self.assertFalse(form.is_valid())
         self.assertIn("112.5", form.errors["training_max"][0])
+
+    def test_validation_error_for_invalid_week(self) -> None:
+        form = TrainingMaxForm(data={"training_max": "425", "week_number": "0"})
+        self.assertFalse(form.is_valid())
+        self.assertIn("greater than or equal to 1", form.errors["week_number"][0])
+
+        form = TrainingMaxForm(data={"training_max": "425", "week_number": "4"})
+        self.assertFalse(form.is_valid())
+        self.assertIn("less than or equal to 3", form.errors["week_number"][0])

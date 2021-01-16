@@ -5,7 +5,11 @@ from typing import List, Generator
 
 WEIGHTS: List[float] = [45, 25, 10, 5, 2.5, 1.25]
 BAR_WEIGHT = 45
-SET_PERCENTAGES = [40, 50, 60, 65, 75, 85, 65, 65, 65, 65, 65]
+SET_PERCENTAGES = {
+    1: [40, 50, 60, 65, 75, 85, 65, 65, 65, 65, 65],
+    2: [40, 50, 60, 70, 80, 90, 70, 70, 70, 70, 70],
+    3: [40, 50, 60, 75, 85, 95, 75, 75, 75, 75, 75],
+}
 
 
 @dataclass
@@ -17,10 +21,11 @@ class Workout:
 
 
 def format_breakdown(weights: List[float]) -> str:
+    weights_in_order = reversed(sorted(set(weights)))
     weight_counts = Counter(weights)
     result = reduce(
         lambda accumulator, key: accumulator + f"{key}x{weight_counts[key]}, ",
-        weights,
+        weights_in_order,
         "",
     )
     return result[:-2]
@@ -56,5 +61,7 @@ def get_set(percentage: float, training_max: float) -> Workout:
     )
 
 
-def get_workout(training_max: float) -> List[Workout]:
-    return [get_set(percentage, training_max) for percentage in SET_PERCENTAGES]
+def get_workout(training_max: float, week_number: int) -> List[Workout]:
+    return [
+        get_set(percentage, training_max) for percentage in SET_PERCENTAGES[week_number]
+    ]
