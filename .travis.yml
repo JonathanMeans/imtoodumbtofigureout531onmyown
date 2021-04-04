@@ -2,9 +2,16 @@ language: python
 python:
   - "3.8"
 
+env:
+  global:
+    MOZ_HEADLESS=1
+
+addons:
+  firefox: latest
+
 install:
   pip install -r requirements.txt
   pip install -r requirements-dev.txt
 
 script:
-  make utest
+  make test
