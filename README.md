@@ -1,1 +1,2 @@
 [![Build Status](https://travis-ci.com/JonathanMeans/imtoodumbtofigureout531onmyown.svg?branch=main)](https://travis-ci.com/JonathanMeans/imtoodumbtofigureout531onmyown)
+[![codecov](https://codecov.io/gh/JonathanMeans/imtoodumbtofigureout531onmyown/branch/main/graph/badge.svg?token=Ol5JenCHK2)](https://codecov.io/gh/JonathanMeans/imtoodumbtofigureout531onmyown)
