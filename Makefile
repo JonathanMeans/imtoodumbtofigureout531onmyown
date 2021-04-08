@@ -10,6 +10,7 @@ typecheck:
 
 test:
 	coverage run --source five_three_one manage.py test
+	coverage report --fail-under=95
 
 
 utest:
