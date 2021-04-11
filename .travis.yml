@@ -15,15 +15,11 @@ addons:
     packages:
       [firefox-geckodriver]
 
-before_install:
-  - docker build -t jmeans319/531 .
 install:
-  pip install -r requirements.txt
-  pip install -r requirements-dev.txt
-  pip install codecov
+  - docker build -t jmeans319/531 .
 
 script:
-  make test
+  - docker run jmeans319/531 make test
 
 after_success:
   - codecov
