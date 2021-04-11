@@ -5,16 +5,6 @@ python:
 services:
   - docker
 
-env:
-  global:
-    MOZ_HEADLESS=1
-
-addons:
-  firefox: latest
-  apt:
-    packages:
-      [firefox-geckodriver]
-
 install:
   - docker build -t jmeans319/531 .
 
