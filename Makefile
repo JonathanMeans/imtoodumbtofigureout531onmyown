@@ -12,6 +12,5 @@ test:
 	coverage run --source five_three_one manage.py test
 	coverage report --fail-under=95
 
-
 utest:
-	python manage.py test five_three_one
+	python3.8 manage.py test five_three_one

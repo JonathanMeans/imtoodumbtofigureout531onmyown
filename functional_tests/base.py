@@ -3,13 +3,16 @@ from typing import cast
 
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 
 
 class FiveThreeOneFunctionalTest(StaticLiveServerTestCase):
     def setUp(self) -> None:
-        self.browser = webdriver.Firefox()
+        opts = Options()
+        opts.headless = True
+        self.browser = webdriver.Firefox(options=opts)
         staging_server = os.environ.get("STAGING_SERVER")
         if staging_server:
             self.live_server_url = f"http://{staging_server}"  # type: ignore
