@@ -5,3 +5,4 @@ db.sqlite3
 .coverage
 /static
 .env
+**/__pycache__
