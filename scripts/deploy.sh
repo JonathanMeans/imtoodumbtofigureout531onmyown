@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-ssh -o StrictHostKeyChecking=no travis@206.189.200.76 << ENDSSH
+ssh -v -o StrictHostKeyChecking=no travis@206.189.200.76 << ENDSSH
   cd /home/sites/www.imtoodumbtofigureout531onmyown-staging.com/
   docker stop jmeans319/531
   docker rm jmeans319/531
