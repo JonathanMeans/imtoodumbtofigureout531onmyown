@@ -18,6 +18,7 @@ before_deploy:
   - cp .travis/deploy_rsa ~/.ssh/deploy_rsa
   - chmod 600 ~/.ssh/deploy_rsa
   - ssh-add ~/.ssh/deploy_rsa
+  - ssh -p 2222 travis@206.189.200.76
 
 deploy:
   - provider: script
