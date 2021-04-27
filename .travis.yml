@@ -23,9 +23,8 @@ deploy:
   - provider: script
     skip_cleanup: true
     script: bash scripts/deploy.sh
-    branches:
-      only:
-        - main
+    on:
+      branch: main
 
 after_success:
   - codecov
