@@ -6,7 +6,7 @@ ssh -v -o StrictHostKeyChecking=no travis@206.189.200.76 << ENDSSH
   docker stop jmeans319/531
   docker rm jmeans319/531
   docker image prune -a -f
-  docker build .
   sudo git pull
+  docker build .
   sudo systemctl restart gunicorn-imtoodumbtofigureout531onmyown-staging.com.service
 ENDSSH
