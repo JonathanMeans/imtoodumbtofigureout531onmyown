@@ -7,5 +7,6 @@ ssh -v -o StrictHostKeyChecking=no travis@206.189.200.76 << ENDSSH
   sudo docker rm jmeans319/531
   sudo docker image prune -a -f
   sudo docker pull jmeans319/531
+  git pull
   sudo systemctl restart gunicorn-imtoodumbtofigureout531onmyown-staging.com.service
 ENDSSH
