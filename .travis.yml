@@ -16,6 +16,8 @@ jobs:
   include:
     - stage: install
       script: pip install -r requirements.txt && pip install -r requirements-dev.txt
+    - stage: test
+      script: make test
     - stage: deploy
       script: . scripts/add_rsa_key.sh
       deploy:
@@ -24,8 +26,6 @@ jobs:
         script: bash scripts/deploy.sh
         on:
           branch: main
-    - stage: after_success
-      script: codecov
 
 # install:
 #   - pip install -r requirements.txt
