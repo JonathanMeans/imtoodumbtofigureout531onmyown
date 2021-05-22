@@ -7,7 +7,7 @@ services:
     volumes:
     - static_volume:/home/sites/www.imtoodumbtofigureout531onmyown-staging.com/static
     ports:
-      - 8000:8080
+      - 8080:8080
     env_file:
       - ./.env
 
