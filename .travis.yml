@@ -25,4 +25,4 @@ jobs:
         on:
           branch: main
     - stage: "Test staging site"
-      script: python scripts/wait_for_ok.py && . scripts/test_against_staging.sh
+      script: pip install -r requirements.txt && pip install -r requirements-dev.txt && python scripts/wait_for_ok.py && . scripts/test_against_staging.sh
