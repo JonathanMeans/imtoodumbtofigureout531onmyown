@@ -16,10 +16,8 @@ jobs:
   include:
     - stage: install
       script: pip install -r requirements.txt && pip install -r requirements-dev.txt
-    - stage: before_deploy
-      script: bash scripts/add_rsa_key.sh
     - stage: deploy
-      script: skip
+      script: . scripts/add_rsa_key.sh
       deploy:
         provider: script
         skip_cleanup: true
