@@ -15,4 +15,3 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 RUN pip install -r requirements-dev.txt
 COPY . $APP_HOME
-RUN python3.8 manage.py collectstatic --no-input
