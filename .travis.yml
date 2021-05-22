@@ -12,16 +12,11 @@ addons:
     packages:
       [firefox-geckodriver]
 
-services:
-  - docker
-
 install:
-  - docker build -t jmeans319/531 .
   - pip install -r requirements.txt
   - pip install -r requirements-dev.txt
 
 script:
-  - docker run jmeans319/531 make test
   - make test
 
 before_deploy:
