@@ -38,5 +38,6 @@ COPY requirements-dev.txt $APP_HOME
 RUN python3.8 -m pip install -r requirements.txt
 RUN python3.8 -m pip install -r requirements-dev.txt
 COPY . $APP_HOME
+RUN . .env
 RUN python3.8 manage.py collectstatic --no-input
-CMD gunicorn lifting.wsgi:application --bind 0.0.0.0:8080
+#CMD gunicorn lifting.wsgi:application --bind 0.0.0.0:8080
