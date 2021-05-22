@@ -3,11 +3,11 @@ version: '3.8'
 services:
   web:
     build: .
-    command: gunicorn lifting.wsgi:application --bind 0.0.0.0:8080
+    command: gunicorn lifting.wsgi:application --bind 0.0.0.0:${PORT}
     volumes:
     - static_volume:/home/sites/www.imtoodumbtofigureout531onmyown.com/static
     ports:
-      - 8080:8080
+      - ${PORT}:${PORT}
     env_file:
       - ./.env
 
