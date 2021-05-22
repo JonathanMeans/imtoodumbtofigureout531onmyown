@@ -14,10 +14,8 @@ addons:
 
 jobs:
   include:
-    - stage: install
-      script: pip install -r requirements.txt && pip install -r requirements-dev.txt
     - stage: test
-      script: make test
+      script: pip install -r requirements.txt && pip install -r requirements-dev.txt && make test
     - stage: deploy
       script: . scripts/add_rsa_key.sh
       deploy:
