@@ -24,3 +24,5 @@ jobs:
         script: bash scripts/deploy.sh
         on:
           branch: main
+    - stage: "Test staging site"
+      script: python scripts/wait_for_ok.py && . scripts/test_against_staging.sh
