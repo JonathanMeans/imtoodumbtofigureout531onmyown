@@ -3,7 +3,7 @@ SHELL ["/bin/bash", "-c"]
 
 # create the app user
 ENV HOME=/home/sites
-ENV APP_HOME=/home/sites/www.imtoodumbtofigureout531onmyown-staging.com
+ENV APP_HOME=/home/sites/www.imtoodumbtofigureout531onmyown.com
 RUN mkdir $HOME
 RUN mkdir $APP_HOME
 RUN mkdir $APP_HOME/static

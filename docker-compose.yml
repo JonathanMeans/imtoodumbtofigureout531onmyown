@@ -5,20 +5,11 @@ services:
     build: .
     command: gunicorn lifting.wsgi:application --bind 0.0.0.0:8080
     volumes:
-    - static_volume:/home/sites/www.imtoodumbtofigureout531onmyown-staging.com/static
+    - static_volume:/home/sites/www.imtoodumbtofigureout531onmyown.com/static
     ports:
       - 8080:8080
     env_file:
       - ./.env
-
-#   nginx:
-#     build: ./nginx
-#     volumes:
-#       - static_volume:/home/sites/www.imtoodumbtofigureout531onmyown-staging.com/static
-#     ports:
-#       - 80:80
-#     depends_on:
-#       - web
 
 volumes:
   static_volume:
