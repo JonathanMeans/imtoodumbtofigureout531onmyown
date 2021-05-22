@@ -21,7 +21,7 @@ jobs:
       deploy:
         provider: script
         skip_cleanup: true
-        script: bash scripts/deploy.sh
+        script: bash scripts/deploy.sh imtoodumbtofigureout531onmyown-staging.com
         on:
           branch: main
     - stage: "Test staging site"
@@ -31,6 +31,6 @@ jobs:
       deploy:
         provider: script
         skip_cleanup: true
-        script: bash scripts/deploy_prod.sh imtoodumbtofigureout531onmyown.com
+        script: bash scripts/deploy.sh imtoodumbtofigureout531onmyown.com
         on:
           branch: main
