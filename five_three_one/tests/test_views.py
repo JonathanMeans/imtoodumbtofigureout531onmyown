@@ -56,7 +56,9 @@ class TestHomeView(TestCase):
         self.assertRedirects(response, "/lifts")
 
     def test_POST_exercise_adds_to_db(self) -> None:
-        self.client.post("/save", data={"training_max": "425", "name": "Deadlift", "week_number": 1})
+        self.client.post(
+            "/save", data={"training_max": "425", "name": "Deadlift", "week_number": 1}
+        )
         self.assertEqual(1, Lift.objects.count())
         lift = Lift.objects.first()
         self.assertEqual("Deadlift", lift.name)

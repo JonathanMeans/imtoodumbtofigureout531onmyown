@@ -1,14 +1,11 @@
-all: format typecheck test
-fast: format typecheck utest
+all: format test
+fast: format utest
 
 format:
 	black .
 
-typecheck:
-	mypy --strict .
-	flake8
-
 test:
+	flake8
 	coverage run --source five_three_one manage.py test
 	coverage report --fail-under=95
 

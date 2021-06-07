@@ -19,5 +19,5 @@ class NewLiftForm(ModelForm):
             ),
             "week_number": forms.fields.NumberInput(
                 attrs={"id": "id_new_lift_week_number"}
-            )
+            ),
         }

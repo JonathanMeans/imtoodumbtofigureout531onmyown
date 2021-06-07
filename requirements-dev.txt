@@ -1,3 +1,5 @@
 selenium==3.141.0
 coverage
 codecov
+django-stubs
+flake8
