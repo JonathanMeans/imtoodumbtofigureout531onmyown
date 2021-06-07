@@ -14,6 +14,11 @@
     {% csrf_token %}
     <input type="submit" id="id_submit_tmax">
 </form>
+<form method="post" action="/save">
+    {{ new_lift_form }}
+    {% csrf_token %}
+    <input type="submit" id="id_submit_new_lift">
+</form>
 {% if errors %}
 <p>{{errors}}</p>
 {% endif %}
