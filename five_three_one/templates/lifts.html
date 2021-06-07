@@ -10,7 +10,7 @@
 <body>
 <ul id="id_lifts_list">
     {% for lift in lifts %}
-        <li> <a href={{ lift.url }}>{{ lift.name }} - {{ lift.training_max }}</a></li>
+        <li> <a href={{ lift.url }}>{{ lift.name }} - {{ lift.training_max }}: Week {{ lift.week_number }}</a></li>
     {% endfor %}
 </ul>
 </body>

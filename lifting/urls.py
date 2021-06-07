@@ -22,4 +22,7 @@ import five_three_one.views
 urlpatterns = [
     path("admin/", admin.site.urls),
     url(r"^$", five_three_one.views.home_view),
+    url(r"^save$", five_three_one.views.save_exercise_view),
+    url(r"^lifts$", five_three_one.views.lifts),
+    url(r"^lift$", five_three_one.views.lift),
 ]

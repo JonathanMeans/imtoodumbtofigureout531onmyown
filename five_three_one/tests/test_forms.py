@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from five_three_one.forms import TrainingMaxForm
+from five_three_one.forms import TrainingMaxForm, NewLiftForm
 
 
 class TrainingMaxFormTest(TestCase):
@@ -22,3 +22,14 @@ class TrainingMaxFormTest(TestCase):
         form = TrainingMaxForm(data={"training_max": "425", "week_number": "4"})
         self.assertFalse(form.is_valid())
         self.assertIn("less than or equal to 3", form.errors["week_number"][0])
+
+
+class NewLiftFormTest(TestCase):
+    def test_new_lift_form_has_custom_field_names(self):
+        form = NewLiftForm()
+        # Need to disambiguate from training_max field of TrainingMaxForm
+        self.assertNotIn("id_training_max", form.as_p())
+        self.assertIn("id_new_lift_training_max", form.as_p())
+
+        self.assertNotIn("id_week_number", form.as_p())
+        self.assertIn("id_new_lift_week_number", form.as_p())
