@@ -26,17 +26,23 @@ class HomePage:
         self.browser = browser
 
     def get_training_max_input(self) -> WebElement:
-        return self.browser.find_element_by_id("id_training_max")
+        return self.browser.find_element_by_id("id_new_lift_training_max")
 
-    def submit_training_max(self, tmax_value: str, week_number: int) -> None:
+    def get_lift_name_input(self) -> WebElement:
+        return self.browser.find_element_by_id("id_name")
+
+    def submit_training_max(self, name: str, tmax_value: str, week_number: int) -> None:
+        name_box = self.get_lift_name_input()
+        name_box.send_keys(name)
+
         inputbox = self.get_training_max_input()
         inputbox.send_keys(tmax_value)
 
-        week_box = self.browser.find_element_by_id("id_week_number")
+        week_box = self.browser.find_element_by_id("id_new_lift_week_number")
         week_box.clear()
         week_box.send_keys(str(week_number))
 
-        self.browser.find_element_by_id("id_submit_tmax").click()
+        self.browser.find_element_by_id("id_submit_training_max").click()
 
     def get_validation_message(self) -> str:
         inputbox = self.get_training_max_input()

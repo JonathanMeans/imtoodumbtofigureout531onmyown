@@ -8,44 +8,24 @@
     <script src="/static/five_three_one.js"></script>
 </head>
 <body>
-<h1>Enter your training max</h1>
-<form method="post" action="/">
+<h1>Select a saved lift</h1>
+<ul id="id_lifts_list">
+    {% for lift in lifts %}
+        <li> <a href={{ lift.url }}>{{ lift.name }} - {{ lift.training_max }}: Week {{ lift.week_number }} </a></li>
+    {% endfor %}
+</ul>
+{% if errors %}
+    <h2>errors</h2>
+        {% for error in errors %}
+            <p>{{ error | escape }}</p>
+    {% endfor %}
+{% endif %}
+<h1>Or enter your training max</h1>
+<form method="post" action="/save">
     {{ form }}
     {% csrf_token %}
-    <input type="submit" id="id_submit_tmax">
+    <input type="submit" id="id_submit_training_max">
 </form>
-<form method="post" action="/save">
-    {{ new_lift_form }}
-    {% csrf_token %}
-    <input type="submit" id="id_submit_new_lift">
-</form>
-{% if errors %}
-<p>{{errors}}</p>
-{% endif %}
-{% if workout %}
-<hr>
-<table id="id_workout_table">
-    <thead>
-        <tr>
-            <th>%</th>
-            <th>Count</th>
-            <th>Weight</th>
-            <th>Breakdown</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for set in workout %}
-        <tr>
-            <td>{{set.percent}}</td>
-            <td>{{set.reps}}</td>
-            <td>{{set.weight}}</td>
-            <td>{{set.breakdown}}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-<button id="id_next_set">Next set</button>
-{% endif %}
 <hr>
 <h3>FAQ</h3>
 <ul>

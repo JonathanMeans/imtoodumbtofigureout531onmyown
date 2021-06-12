@@ -9,7 +9,7 @@ class ValidationTest(FiveThreeOneFunctionalTest):
 
         # She is asked to enter her training max for deadlift
         # She enters a number far too low
-        page.submit_training_max("25", 1)
+        page.submit_training_max("Deadlift", "25", 1)
 
         # She sees an error message about her invalid input
         error_message = page.get_validation_message()
