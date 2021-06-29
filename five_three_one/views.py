@@ -49,6 +49,7 @@ def lift(request: HttpRequest) -> HttpResponse:
         "lift.html",
         {
             "workout": workout,
+            "lift": the_lift,
         },
     )
 
