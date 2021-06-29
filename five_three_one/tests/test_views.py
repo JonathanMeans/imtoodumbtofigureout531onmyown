@@ -70,7 +70,9 @@ class TestLiftsView(TestCase):
 
 class TestLiftView(TestCase):
     def setUp(self) -> None:
-        self.lift = Lift.objects.create(name="Deadlift", training_max=425, week_number=1)
+        self.lift = Lift.objects.create(
+            name="Deadlift", training_max=425, week_number=1
+        )
 
     def test_lift_page_uses_lift_template(self) -> None:
         response = self.client.get(self.lift.url)
@@ -106,3 +108,15 @@ class NextWeekView(TestCase):
         self.client.get("/next_week", data={"id": lift.id})
         lift = Lift.objects.get(pk=lift.id)
         self.assertEqual(1, lift.week_number)
+
+
+class TestDeleteView(TestCase):
+    def test_delete_view_redirects_to_lifts_view(self):
+        lift = Lift.objects.create(name="Deadlift", training_max=425, week_number=3)
+        response = self.client.get("/delete_lift", data={"id": lift.id})
+        self.assertRedirects(response, "/lifts")
+
+    def test_delete_view_removes_lift(self):
+        lift = Lift.objects.create(name="Deadlift", training_max=425, week_number=3)
+        self.client.get("/delete_lift", data={"id": lift.id})
+        self.assertEqual(0, Lift.objects.count())

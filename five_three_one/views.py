@@ -54,6 +54,13 @@ def lift(request: HttpRequest) -> HttpResponse:
     )
 
 
+def delete_lift(request: HttpRequest) -> HttpResponse:
+    lift_id = request.GET["id"]
+    the_lift = Lift.objects.get(id=lift_id)
+    the_lift.delete()
+    return redirect("/lifts")
+
+
 def next_week(request: HttpRequest) -> HttpResponse:
     lift_id = request.GET["id"]
     the_lift = Lift.objects.get(id=lift_id)

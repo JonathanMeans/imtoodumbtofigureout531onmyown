@@ -26,4 +26,5 @@ urlpatterns = [
     url(r"^lifts$", five_three_one.views.lifts),
     url(r"^lift$", five_three_one.views.lift),
     url(r"^next_week$", five_three_one.views.next_week),
+    url(r"^delete_lift$", five_three_one.views.delete_lift),
 ]

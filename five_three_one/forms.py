@@ -5,7 +5,6 @@ from five_three_one.models import Lift
 
 
 class NewLiftForm(ModelForm):
-
     class Meta:
         model = Lift
         fields = ["name", "training_max", "week_number"]
