@@ -69,14 +69,20 @@ class TestLiftsView(TestCase):
 
 
 class TestLiftView(TestCase):
+    def setUp(self) -> None:
+        self.lift = Lift.objects.create(name="Deadlift", training_max=425, week_number=1)
+
     def test_lift_page_uses_lift_template(self) -> None:
-        lift = Lift.objects.create(name="Deadlift", training_max=425, week_number=1)
-        response = self.client.get(lift.url)
+        response = self.client.get(self.lift.url)
         self.assertTemplateUsed(response, "lift.html")
 
+    def test_lift_page_passes_lift(self) -> None:
+        response = self.client.get(self.lift.url)
+        self.assertIn("lift", response.context)
+        self.assertIn("workout", response.context)
+
     def test_lift_page_shows_workout(self) -> None:
-        lift = Lift.objects.create(name="Deadlift", training_max=425, week_number=1)
-        response = self.client.get("/lift", data={"id": lift.id})
+        response = self.client.get("/lift", data={"id": self.lift.id})
         self.assertContains(response, "40%")
         self.assertContains(response, "5")
         self.assertContains(response, "170")
