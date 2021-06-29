@@ -25,4 +25,5 @@ urlpatterns = [
     url(r"^save$", five_three_one.views.save_exercise_view),
     url(r"^lifts$", five_three_one.views.lifts),
     url(r"^lift$", five_three_one.views.lift),
+    url(r"^next_week$", five_three_one.views.next_week),
 ]

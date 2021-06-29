@@ -81,3 +81,22 @@ class TestLiftView(TestCase):
         self.assertContains(response, "5")
         self.assertContains(response, "170")
         self.assertContains(response, "45x1")
+
+
+class NextWeekView(TestCase):
+    def test_next_week_redirects_to_lift(self):
+        lift = Lift.objects.create(name="Deadlift", training_max=425, week_number=1)
+        response = self.client.get("/next_week", data={"id": lift.id})
+        self.assertRedirects(response, escape(lift.url))
+
+    def test_next_week_advances_week_number(self):
+        lift = Lift.objects.create(name="Deadlift", training_max=425, week_number=1)
+        self.client.get("/next_week", data={"id": lift.id})
+        lift = Lift.objects.get(pk=lift.id)
+        self.assertEqual(2, lift.week_number)
+
+    def test_week_three_advances_to_week_one(self):
+        lift = Lift.objects.create(name="Deadlift", training_max=425, week_number=3)
+        self.client.get("/next_week", data={"id": lift.id})
+        lift = Lift.objects.get(pk=lift.id)
+        self.assertEqual(1, lift.week_number)

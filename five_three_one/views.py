@@ -51,3 +51,11 @@ def lift(request: HttpRequest) -> HttpResponse:
             "workout": workout,
         },
     )
+
+
+def next_week(request: HttpRequest) -> HttpResponse:
+    lift_id = request.GET["id"]
+    the_lift = Lift.objects.get(id=lift_id)
+    the_lift.week_number = (the_lift.week_number % 3) + 1
+    the_lift.save(update_fields=["week_number"])
+    return redirect(the_lift.url)
