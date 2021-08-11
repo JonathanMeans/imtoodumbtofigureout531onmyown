@@ -1,6 +1,7 @@
 from django.test import TestCase
 
-from five_three_one.forms import NewLiftForm
+from five_three_one.forms import NewLiftForm, IncrementTmaxForm
+from five_three_one.models import Lift
 
 
 class NewLiftFormTest(TestCase):
@@ -31,3 +32,29 @@ class NewLiftFormTest(TestCase):
         form = NewLiftForm(data={"training_max": "425", "week_number": "4"})
         self.assertFalse(form.is_valid())
         self.assertIn("less than or equal to 3", form.errors["week_number"][0])
+
+
+class IncrementTmaxFormTest(TestCase):
+    def setUp(self) -> None:
+        self.the_lift = Lift.objects.create(
+            name="Deadlift", training_max=425, week_number=1
+        )
+
+    def test_validation_error_for_nonnumeric_increment(self) -> None:
+        form = IncrementTmaxForm(data={"id": self.the_lift.id, "increment": "abc"})
+        self.assertFalse(form.is_valid())
+        self.assertIn("Enter a number", form.errors["increment"][0])
+
+    def test_validation_error_for_zero_increment(self) -> None:
+        form = IncrementTmaxForm(data={"id": self.the_lift.id, "increment": "0"})
+        self.assertFalse(form.is_valid())
+        self.assertIn("Ensure this value is greater than", form.errors["increment"][0])
+
+    def test_validation_error_for_missing_increment(self) -> None:
+        form = IncrementTmaxForm(data={"id": self.the_lift.id})
+        self.assertFalse(form.is_valid())
+        self.assertIn("This field is required", form.errors["increment"][0])
+
+    def test_accept_valid_form(self) -> None:
+        form = IncrementTmaxForm(data={"id": self.the_lift.id, "increment": "10"})
+        self.assertTrue(form.is_valid())

@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm, Form
 
 from five_three_one.models import Lift
 
@@ -30,3 +30,8 @@ class NewLiftForm(ModelForm):
                 f"Training max must be greater than or equal to {min_value}"
             )
         return training_max
+
+
+class IncrementTmaxForm(Form):
+    id = forms.IntegerField()
+    increment = forms.FloatField(min_value=2.5)

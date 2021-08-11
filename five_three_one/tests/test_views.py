@@ -120,3 +120,31 @@ class TestDeleteView(TestCase):
         lift = Lift.objects.create(name="Deadlift", training_max=425, week_number=3)
         self.client.get("/delete_lift", data={"id": lift.id})
         self.assertEqual(0, Lift.objects.count())
+
+
+class TestIncreaseView(TestCase):
+    def setUp(self) -> None:
+        self.the_lift = Lift.objects.create(
+            name="Deadlift", training_max=425, week_number=1
+        )
+
+    def test_increment_redirects_to_lift_view(self):
+        response = self.client.post(
+            "/increase_tmax", data={"id": self.the_lift.id, "increment": 10}
+        )
+        self.assertRedirects(response, escape(self.the_lift.url))
+
+    def test_increment_increases_training_max(self):
+        self.client.post(
+            "/increase_tmax", data={"id": self.the_lift.id, "increment": 10}
+        )
+        lift = Lift.objects.get(id=self.the_lift.id)
+        self.assertEqual(435, lift.training_max)
+
+    def test_error_on_invalid_increment(self) -> None:
+        response = self.client.post(
+            "/increase_tmax", data={"id": self.the_lift.id, "increment": 0}
+        )
+        self.assertIn(
+            "greater than or equal to", response.context["errors"]["increment"][0]
+        )

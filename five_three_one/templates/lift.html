@@ -12,6 +12,13 @@
 <hr>
 <h1>{{lift.name}} - Week {{lift.week_number}}</h1>
 <a href="/next_week?id={{lift.id}}">Next week</a>
+<h1>Training max: {{lift.training_max}}</h1>
+<form method="post" action="/increase_tmax">
+    {% csrf_token %}
+    <input type="hidden" name="id" value="{{lift.id}}">
+    <input type="text" name="increment" placeholder="10">
+    <input type="submit" id="id_submit_training_max" value="Increase training max">
+</form>
 <table id="id_workout_table">
     <thead>
         <tr>
