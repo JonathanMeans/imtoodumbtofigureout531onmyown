@@ -64,8 +64,8 @@ def delete_lift(request: HttpRequest) -> HttpResponse:
 def increase_tmax(request: HttpRequest) -> HttpResponse:
     form = IncrementTmaxForm(request.POST)
     if form.is_valid():
-        the_lift = Lift.objects.get(id=form.cleaned_data['id'])
-        the_lift.training_max += form.cleaned_data['increment']
+        the_lift = Lift.objects.get(id=form.cleaned_data["id"])
+        the_lift.training_max += form.cleaned_data["increment"]
         the_lift.save()
         return redirect(the_lift.url)
     else:
