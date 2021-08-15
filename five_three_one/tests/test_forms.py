@@ -45,11 +45,6 @@ class IncrementTmaxFormTest(TestCase):
         self.assertFalse(form.is_valid())
         self.assertIn("Enter a number", form.errors["increment"][0])
 
-    def test_validation_error_for_zero_increment(self) -> None:
-        form = IncrementTmaxForm(data={"id": self.the_lift.id, "increment": "0"})
-        self.assertFalse(form.is_valid())
-        self.assertIn("Ensure this value is greater than", form.errors["increment"][0])
-
     def test_validation_error_for_missing_increment(self) -> None:
         form = IncrementTmaxForm(data={"id": self.the_lift.id})
         self.assertFalse(form.is_valid())

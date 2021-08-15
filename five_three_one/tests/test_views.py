@@ -141,10 +141,8 @@ class TestIncreaseView(TestCase):
         lift = Lift.objects.get(id=self.the_lift.id)
         self.assertEqual(435, lift.training_max)
 
-    def test_error_on_invalid_increment(self) -> None:
-        response = self.client.post(
-            "/increase_tmax", data={"id": self.the_lift.id, "increment": 0}
-        )
+    def test_error_on_missing_increment(self) -> None:
+        response = self.client.post("/increase_tmax", data={"id": self.the_lift.id})
         self.assertIn(
-            "greater than or equal to", response.context["errors"]["increment"][0]
+            "This field is required", response.context["errors"]["increment"][0]
         )

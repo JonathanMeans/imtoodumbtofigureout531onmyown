@@ -34,4 +34,4 @@ class NewLiftForm(ModelForm):
 
 class IncrementTmaxForm(Form):
     id = forms.IntegerField()
-    increment = forms.FloatField(min_value=2.5)
+    increment = forms.FloatField()
